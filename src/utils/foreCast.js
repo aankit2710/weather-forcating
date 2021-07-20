@@ -17,7 +17,7 @@ const foreCast = (lattitude, longitude, callback) => {
     lattitude +
     "," +
     longitude +
-    "?unitGroup=us&key=M7NT29E55ESDS7PT2DJUP4GS9";
+    "?unitGroup=metric&key=M7NT29E55ESDS7PT2DJUP4GS9";
 
   request({ url: url, json: true }, (error, response) => {
     if (error) {
