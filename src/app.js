@@ -1,10 +1,12 @@
 const path = require("path");
 const express = require("express");
 const hbs = require("hbs");
-const app = express();
 const foreCast = require("./utils/foreCast");
 const geoCode = require("./utils/geoCode");
 
+const app = express();
+
+const port = process.env.PORT || 3000
 // Define path for Express Config
 const publicDirectoryPath = path.join(__dirname, "../public");
 const viewPath = path.join(__dirname, "../templates/views");
@@ -96,6 +98,7 @@ app.get("*", (req, res) => {
     name: "Ankit Kumar",
   });
 });
-app.listen(3001, () => {
-  console.log("Server is up on port 3001");
+
+app.listen(port, () => {
+  console.log("Server is up on port " + port);
 });
