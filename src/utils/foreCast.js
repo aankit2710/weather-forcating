@@ -25,7 +25,7 @@ const foreCast = (lattitude, longitude, callback) => {
     } else if (response.statusCode === 400) {
       callback("Unable to find the location", undefined);
     } else {
-      fs.writeFileSync("weather.json", JSON.stringify(response.body.currentConditions));
+      fs.writeFileSync("weather.json", JSON.stringify(response.body));
       callback(
         undefined,
         {
@@ -33,7 +33,9 @@ const foreCast = (lattitude, longitude, callback) => {
           conditions: `The weather condition is ${response.body.currentConditions.conditions}.`,
           precipprob: `There is a ${response.body.currentConditions.precipprob} chance of rain.`,
           description: `${response.body.description}.`,
-          humidity: `The amount of humidity is ${response.body.currentConditions.humidity}`
+          humidity: `The amount of humidity is ${response.body.currentConditions.humidity}`,
+          maxTemp: `The maximum Temperature is ${response.body.days[0].tempmax}`,
+          minTemp: `The minimum Temperature is ${response.body.days[0].tempmin}`
         } 
       );
     }

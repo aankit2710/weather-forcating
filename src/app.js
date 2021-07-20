@@ -6,7 +6,7 @@ const geoCode = require("./utils/geoCode");
 
 const app = express();
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3004
 // Define path for Express Config
 const publicDirectoryPath = path.join(__dirname, "../public");
 const viewPath = path.join(__dirname, "../templates/views");
@@ -65,7 +65,7 @@ app.get("/weather", (req, res) => {
     if (error) {
       return res.send({ error });
     }
-    foreCast(lattitude, longitude, (error, { temperature, conditions, precipprob, description, humidity }) => {
+    foreCast(lattitude, longitude, (error, { temperature, conditions, precipprob, description, humidity, maxTemp, minTemp }) => {
       if (error) {
         return res.send({ error });
       }
@@ -75,6 +75,8 @@ app.get("/weather", (req, res) => {
         precipprob,
         description,
         humidity,
+        maxTemp,
+        minTemp,
         location: placeName,
         address: req.query.address
       });

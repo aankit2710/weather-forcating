@@ -15,6 +15,8 @@ const messageFour = document.querySelector("#message-4")
 const messageFive = document.querySelector("#message-5")
 const messageSix = document.querySelector("#message-6")
 const messageSeven = document.querySelector("#message-7")
+const messageEight = document.querySelector("#message-8")
+const messageNine = document.querySelector("#message-9")
 
 weatherForm.addEventListener('submit', e =>{
 e.preventDefault()
@@ -26,6 +28,8 @@ messageFour.textContent = ""
 messageFive.textContent = ""
 messageSix.textContent = ""
 messageSeven.textContent = ""
+messageEight.textContent = ""
+messageNine.textContent = ""
 
 fetch("/weather?address="+search.value).then(response =>{
     response.json().then(data => {
@@ -35,11 +39,13 @@ fetch("/weather?address="+search.value).then(response =>{
         else{
             messageOne.textContent = "Search For : " + data.address
             messageTwo.textContent = "Temperature : " + data.temperature
-            messageThree.textContent = "Conditions : " +data.conditions
-            messageFour.textContent = "Precipitation Probability : " +data.precipprob
-            messageFive.textContent = "Humidity : " +data.humidity
-            messageSix.textContent = data.description
-            messageSeven.textContent = "Exact Location : " +data.location
+            messageThree.textContent = "Maximum Temperature : " + data.maxTemp
+            messageFour.textContent = "Minimum Temperature : " + data.minTemp
+            messageFive.textContent = "Conditions : " +data.conditions
+            messageSix.textContent = "Precipitation Probability : " +data.precipprob
+            messageSeven.textContent = "Humidity : " +data.humidity
+            messageEight.textContent = data.description
+            messageNine.textContent = "Exact Location : " +data.location
         }
     })
 })
